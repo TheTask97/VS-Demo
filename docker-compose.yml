@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build:
+      context: ./Frontend/vs-demo/
+    ports:
+      - "4200:4200"
+    environment:
+      - BACKEND_API_URL=http://spring-boot-app:8080
+    networks:
+      - frontend-backend
+    depends_on:
+        - spring-boot-app
+
+  spring-boot-app:
+    build:
+      context: ./Backend/task/
+    ports:
+      - "8080:8080"
+    networks:
+      - frontend-backend
+      - backend-db
+    depends_on:
+      - postgres-db 
+  
+  postgres-db:
+    image: postgres:15.1
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - backend-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB:       tododb
+      POSTGRES_USER:     admin
+      POSTGRES_PASSWORD: admin
+      
+networks:
+  frontend-backend:
+  backend-db:
+  
+volumes:
+  db:
