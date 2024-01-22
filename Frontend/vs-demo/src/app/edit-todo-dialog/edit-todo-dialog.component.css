@@ -1,0 +1,9 @@
+/* Add this to your styles.css or styles.scss file */
+.dialog-content-wrapper {
+  margin: 20px; /* Adjust the margin value as needed */
+}
+
+.modal-header {
+  justify-content: center;
+  margin-top: 3%;
+}

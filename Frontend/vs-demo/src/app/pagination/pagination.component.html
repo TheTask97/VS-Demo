@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mb-3" *ngFor="let element of displayedElements" style="min-width: fit-content;">
+      <div class="rounded border border-dark custom-card-style d-flex flex-column justify-content-between" style="max-width: 15vw; max-height: 20vh;">
+        <div>
+          <h3 class="card-title">{{ element.name }}</h3>
+          <hr class="my-1">
+          <div class="card-text">{{ element.description }}</div>
+        </div>
+        <div class="mt-auto text-center">
+          <button class="btn btn-primary mb-2 m-1" (click)="openEditTodoDialog(element)">Edit</button> <button class="btn btn-danger mb-2 m-1" (click)="deleteItem(element.id!)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <nav aria-label="Page navigation">
+    <ngb-pagination [(page)]="currentPage" [pageSize]="itemsPerPage" [collectionSize]="elements.length"></ngb-pagination>
+  </nav>
+</div>
